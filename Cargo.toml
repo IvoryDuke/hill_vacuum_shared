@@ -4,5 +4,7 @@ version = "0.2.5"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 description = "Library of shared utilities among the other HillVacuum libraries"
+homepage = "https://github.com/IvoryDuke/hill_vacuum_shared"
+repository = "https://github.com/IvoryDuke/hill_vacuum_shared"
 readme = "README.md"
 keywords = ["gamedev", "mapeditor", "bevy"]
