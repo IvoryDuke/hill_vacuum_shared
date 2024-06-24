@@ -60,7 +60,7 @@ macro_rules! iterate_slice_in_triplets {
 
 //=======================================================================//
 
-/// Ends the function call if `$value` is `None`. Otherwise it returns the contained value.
+/// Ends the function call if `$value` is [`None`]. Otherwise it returns the contained value.
 #[macro_export]
 macro_rules! return_if_none {
     ($value:expr) => {
@@ -104,7 +104,7 @@ macro_rules! return_if_no_match {
 
 //=======================================================================//
 
-/// Ends the function call if `$value` is `Err`. Otherwise it returns the contained value.
+/// Ends the function call if `$value` is [`Err`]. Otherwise it returns the contained value.
 #[macro_export]
 macro_rules! return_if_err {
     ($value:expr) => {
@@ -126,7 +126,7 @@ macro_rules! return_if_err {
 
 //=======================================================================//
 
-/// Continues the loop if `$value` is `None`. Otherwise it returns the contained value.
+/// Continues the loop if `$value` is [`None`]. Otherwise it returns the contained value.
 #[macro_export]
 macro_rules! continue_if_none {
     ($value:expr) => (
@@ -148,7 +148,7 @@ macro_rules! continue_if_none {
 
 //=======================================================================//
 
-/// Continues the loop if `$value` is `None`. Otherwise it returns the contained value.
+/// Continues the loop if `$value` is [`Err`]. Otherwise it returns the contained value.
 #[macro_export]
 macro_rules! continue_if_err {
     ($value:expr) => {
@@ -201,6 +201,7 @@ macro_rules! match_or_panic {
 //
 //=======================================================================//
 
+/// Returns the draw height from `height`.
 #[inline]
 #[must_use]
 pub fn draw_height_to_world(height: i8) -> f32 { f32::from(height) / 8f32 }
