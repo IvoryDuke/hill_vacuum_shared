@@ -195,13 +195,3 @@ macro_rules! match_or_panic {
         }
     };
 }
-
-//=======================================================================//
-// FUNCTIONS
-//
-//=======================================================================//
-
-/// Returns the draw height from `height`.
-#[inline]
-#[must_use]
-pub fn draw_height_to_world(height: i8) -> f32 { f32::from(height) / 8f32 }
