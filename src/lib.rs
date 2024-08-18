@@ -218,7 +218,7 @@ pub enum ManualItem
 pub fn process_manual<
     S: FnMut(&mut String, bool),
     N: FnMut(&mut String, &str, ManualItem),
-    P: Fn(&mut String, &str, String, ManualItem),
+    P: Fn(&mut String, &str, &PathBuf, ManualItem),
     E: FnMut(&mut String)
 >(
     start_string: &str,
@@ -296,7 +296,7 @@ pub fn process_manual<
             process_file(
                 &mut string,
                 &chars.collect::<String>(),
-                std::fs::read_to_string(&path).unwrap(),
+                &path,
                 item
             );
         }
