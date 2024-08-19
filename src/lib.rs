@@ -3,7 +3,10 @@
 //
 //=======================================================================//
 
-use std::{ops::RangeInclusive, path::{Path, PathBuf}};
+use std::{
+    ops::RangeInclusive,
+    path::{Path, PathBuf}
+};
 
 //=======================================================================//
 // CONSTANTS
@@ -215,18 +218,17 @@ pub enum ManualItem
 
 #[allow(clippy::missing_panics_doc)]
 #[inline]
-pub fn process_manual<
-    S: FnMut(&mut String, bool),
-    N: FnMut(&mut String, &str, ManualItem),
-    P: Fn(&mut String, &str, String, ManualItem),
-    E: FnMut(&mut String)
->(
-    start_string: &str,
-    mut section_start: S,
-    mut section_name: N,
+pub fn process_manual<S, N, P, E>(
+    section_start: S,
+    section_name: N,
     process_file: P,
-    mut section_end: E
+    section_end: E
 ) -> String
+where
+    S: Fn(&mut String, bool),
+    N: Fn(&mut String, &str, ManualItem),
+    P: Fn(&mut String, &str, String, ManualItem),
+    E: Fn(&mut String)
 {
     impl From<char> for ManualItem
     {
@@ -256,7 +258,7 @@ pub fn process_manual<
         (chars.skip_while(|c| !c.is_alphabetic()), first.into())
     }
 
-    let mut string = start_string.to_owned();
+    let mut string = String::new();
     let mut dirs = std::fs::read_dir(PathBuf::from("docs/manual/"))
         .unwrap()
         .map(|entry| entry.unwrap().path())
