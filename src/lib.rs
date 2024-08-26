@@ -218,17 +218,17 @@ pub enum ManualItem
 
 #[allow(clippy::missing_panics_doc)]
 #[inline]
-pub fn process_manual<S, N, P, E>(
+pub fn process_docs<S, N, P, E>(
     section_start: S,
     section_name: N,
     process_file: P,
     section_end: E
 ) -> String
 where
-    S: Fn(&mut String, bool),
+    S: Fn(&mut String),
     N: Fn(&mut String, &str, ManualItem),
     P: Fn(&mut String, &str, String, ManualItem),
-    E: Fn(&mut String)
+    E: Fn(&mut String, bool)
 {
     impl From<char> for ManualItem
     {
@@ -268,7 +268,7 @@ where
 
     for (i, dir) in dirs.into_iter().enumerate()
     {
-        section_start(&mut string, i == last_index);
+        section_start(&mut string);
 
         let (mut chars, item) = stem_chars(&dir);
         let mut name = String::from(chars.next_value().to_ascii_uppercase());
@@ -303,7 +303,7 @@ where
             );
         }
 
-        section_end(&mut string);
+        section_end(&mut string, i == last_index);
     }
 
     string
