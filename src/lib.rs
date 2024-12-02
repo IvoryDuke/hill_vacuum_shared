@@ -211,6 +211,26 @@ pub enum ManualItem
     Texture
 }
 
+impl From<char> for ManualItem
+{
+    #[inline]
+    fn from(value: char) -> Self
+    {
+        if value == 'S' || value == 'T'
+        {
+            Self::Tool
+        }
+        else if value == 'X'
+        {
+            Self::Texture
+        }
+        else
+        {
+            Self::Regular
+        }
+    }
+}
+
 //=======================================================================//
 // FUNCTIONS
 //
@@ -230,26 +250,6 @@ where
     P: Fn(&mut String, &str, String, ManualItem),
     E: Fn(&mut String, bool)
 {
-    impl From<char> for ManualItem
-    {
-        #[inline]
-        fn from(value: char) -> Self
-        {
-            if value == 'S' || value == 'T'
-            {
-                Self::Tool
-            }
-            else if value == 'X'
-            {
-                Self::Texture
-            }
-            else
-            {
-                Self::Regular
-            }
-        }
-    }
-
     #[inline]
     fn stem_chars(path: &Path) -> (impl Iterator<Item = char> + '_, ManualItem)
     {
